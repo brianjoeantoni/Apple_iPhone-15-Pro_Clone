@@ -11,7 +11,7 @@ const Features = () => {
     gsap.to("#exploreVideo", {
       scrollTrigger: {
         trigger: "#exploreVideo",
-        toggleActions: "play pause reverse restart",
+        toggleActions: "play restart restart restart",
         start: "-10% bottom",
       },
       onComplete: () => {
