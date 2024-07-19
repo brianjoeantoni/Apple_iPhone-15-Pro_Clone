@@ -65,6 +65,29 @@ const Model = () => {
     });
   }, []);
 
+  const updateTitle = (size, colorName) => {
+    const baseTitle = "iPhone 15 ";
+    const sizeText = size === "large" ? "Pro Max" : "Pro";
+
+    return `${baseTitle} ${sizeText} in ${colorName}`;
+  };
+
+  const handleSizeClick = (value) => {
+    setSize(value);
+
+    setModel((prevModel) => ({
+      ...prevModel,
+      title: updateTitle(value, prevModel.colorName),
+    }));
+  };
+
+  const handleColorClick = (item) => {
+    setModel(() => ({
+      ...item,
+      title: updateTitle(size, item.colorName),
+    }));
+  };
+
   return (
     <section className="common-padding">
       <div className="screen-max-width">
@@ -115,18 +138,14 @@ const Model = () => {
 
             <div className="flex-center">
               <ul className="color-container">
-                {models.map((item, i) => {
-                  return (
-                    <li
-                      key={i}
-                      className="w-6 h-6 rounded-full mx-2 cursor-pointer"
-                      style={{ backgroundColor: item.color[0] }}
-                      onClick={() => {
-                        setModel(item);
-                      }}
-                    />
-                  );
-                })}
+                {models.map((item, i) => (
+                  <li
+                    key={i}
+                    className="w-6 h-6 rounded-full mx-2 cursor-pointer"
+                    style={{ backgroundColor: item.color[0] }}
+                    onClick={() => handleColorClick(item)}
+                  />
+                ))}
               </ul>
 
               <button className="size-btn-container">
@@ -140,7 +159,7 @@ const Model = () => {
                           size === value ? "white" : "transparent",
                         color: size === value ? "black" : "white",
                       }}
-                      onClick={() => setSize(value)}
+                      onClick={() => handleSizeClick(value)}
                     >
                       {label}
                     </span>
