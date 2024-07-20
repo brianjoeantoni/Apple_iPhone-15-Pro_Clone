@@ -14,6 +14,7 @@ const Model = () => {
     title: "iPhone 15 Pro in Natural Titanium",
     color: ["#8F8A81", "#FFE789", "#6F6C64"],
     img: yellowImg,
+    colorName: "Natural Titanium",
   });
 
   // camera control for the model view
